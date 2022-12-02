@@ -1,40 +1,36 @@
-// From https://doc.rust-lang.org/rust-by-example/std_misc/file/read_lines.html
-use std::fs::File;
-use std::io::{self, BufRead};
-use std::path::Path;
+use std::io::BufRead;
 
-fn main() {
-    let mut sum: i64 = 0;
-    let mut max: i64 = 0;
+const input_filename: &str = "./01-calorie-counting.input.txt";
 
-    // File hosts must exist in current path before this produces output
-    if let Ok(lines) = read_lines("./01-calorie-counting.input.txt") {
-        // Consumes the iterator, returns an (Optional) String
-        for line in lines {
-            if let Ok(value) = line {
-                if value != "" {
-                    sum += value.parse::<i64>().unwrap();
-                } else {
-                    if sum > max {
-                        max = sum
-                    }
-                    sum = 0
-                }
-            }
+fn main() -> Result<(), std::io::Error> {
+    let mut calories: std::vec::Vec<i32> = std::vec::Vec::new();
+    let mut sum = 0;
+
+    for line in read_lines(input_filename)? {
+        let line = line?;
+
+        if line != "" {
+            sum += line.parse::<i32>().unwrap();
+        } else {
+            calories.push(sum);
+            sum = 0
         }
     }
 
-    if sum > max {
-        max = sum
-    }
+    calories.push(sum);
 
-    println!("{}", max)
+    calories.sort();
+    calories.reverse();
+
+    let ans1 = calories[0];
+    let ans2: i32 = calories[0 .. 3].iter().sum();
+
+    Ok(println!("{}\n{}", ans1, ans2))
 }
 
-// The output is wrapped in a Result to allow matching on errors
-// Returns an Iterator to the Reader of the lines of the file.
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where P: AsRef<Path>, {
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
+// From https://doc.rust-lang.org/rust-by-example/std_misc/file/read_lines.html
+fn read_lines<P>(filename: P) -> std::io::Result<std::io::Lines<std::io::BufReader<std::fs::File>>>
+where P: AsRef<std::path::Path>, {
+    let file = std::fs::File::open(filename)?;
+    Ok(std::io::BufReader::new(file).lines())
 }
