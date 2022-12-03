@@ -1,2 +1,6 @@
 tasks:
   - init: cargo install cargo-script && exit
+
+vscode:
+  extensions:
+    - rust-lang.rust-analyzer
