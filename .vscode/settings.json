@@ -49,6 +49,11 @@
                     "deps": [],
                 },
                 {
+                    "root_module": "08-treetop-tree-house.rs",
+                    "edition": "2018",
+                    "deps": [],
+                },
+                {
                     "root_module": "hello.rs",
                     "edition": "2018",
                     "deps": [],
