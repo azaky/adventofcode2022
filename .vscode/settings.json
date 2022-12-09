@@ -54,6 +54,11 @@
                     "deps": [],
                 },
                 {
+                    "root_module": "09-rope-bridge.rs",
+                    "edition": "2018",
+                    "deps": [],
+                },
+                {
                     "root_module": "hello.rs",
                     "edition": "2018",
                     "deps": [],
