@@ -59,6 +59,11 @@
                     "deps": [],
                 },
                 {
+                    "root_module": "10-cathode-ray-tube.rs",
+                    "edition": "2018",
+                    "deps": [],
+                },
+                {
                     "root_module": "hello.rs",
                     "edition": "2018",
                     "deps": [],
