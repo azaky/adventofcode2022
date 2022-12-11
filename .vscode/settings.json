@@ -64,6 +64,11 @@
                     "deps": [],
                 },
                 {
+                    "root_module": "11-monkey-in-the-middle.rs",
+                    "edition": "2018",
+                    "deps": [],
+                },
+                {
                     "root_module": "hello.rs",
                     "edition": "2018",
                     "deps": [],
