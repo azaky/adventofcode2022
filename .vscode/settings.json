@@ -69,6 +69,11 @@
                     "deps": [],
                 },
                 {
+                    "root_module": "12-hill-climbing-algorithm.rs",
+                    "edition": "2018",
+                    "deps": [],
+                },
+                {
                     "root_module": "hello.rs",
                     "edition": "2018",
                     "deps": [],
