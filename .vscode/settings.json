@@ -74,6 +74,11 @@
                     "deps": [],
                 },
                 {
+                    "root_module": "13-distress-signal.rs",
+                    "edition": "2018",
+                    "deps": [],
+                },
+                {
                     "root_module": "hello.rs",
                     "edition": "2018",
                     "deps": [],
