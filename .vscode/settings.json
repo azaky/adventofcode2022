@@ -79,6 +79,11 @@
                     "deps": [],
                 },
                 {
+                    "root_module": "14-regolith-reservoir.rs",
+                    "edition": "2018",
+                    "deps": [],
+                },
+                {
                     "root_module": "hello.rs",
                     "edition": "2018",
                     "deps": [],
