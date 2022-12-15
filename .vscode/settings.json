@@ -84,6 +84,11 @@
                     "deps": [],
                 },
                 {
+                    "root_module": "15-beacon-exclusion-zone.rs",
+                    "edition": "2018",
+                    "deps": [],
+                },
+                {
                     "root_module": "hello.rs",
                     "edition": "2018",
                     "deps": [],

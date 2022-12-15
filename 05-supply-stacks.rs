@@ -61,12 +61,12 @@ fn main() {
         // println!("{:?}", stacks2);
     }
 
-    let ans1 = must!(String::from_utf8(
+    let ans1 = String::from_utf8(
         stacks1.iter().map(|s| s[s.len() - 1]).collect::<Vec<_>>()
-    ));
-    let ans2 = must!(String::from_utf8(
+    ).unwrap();
+    let ans2 = String::from_utf8(
         stacks2.iter().map(|s| s[s.len() - 1]).collect::<Vec<_>>()
-    ));
+    ).unwrap();
 
     println!("{}\n{}", ans1, ans2);
 }
