@@ -13,5 +13,5 @@ cargo install rust-script
 To run something:
 
 ```bash
-rust-script 01-calorie-counting.rs
+./run 01
 ```

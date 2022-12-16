@@ -1,104 +1,109 @@
 {
-    "rust-analyzer.linkedProjects": [
+  "rust-analyzer.linkedProjects": [
+    {
+      "sysroot_src": "/usr/local/rustup/toolchains/1.65.0-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library",
+      "crates": [
         {
-            "sysroot_src": "/usr/local/rustup/toolchains/1.65.0-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library",
-            "crates": [
-                {
-                    "root_module": "06-tuning-trouble.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "07-no-space-left-on-device.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "01-calorie-counting.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "02-rock-paper-scissors.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "03-rucksack-reorganization.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "04-camp-cleanup.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "05-supply-stacks.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "06-tuning-trouble.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "07-no-space-left-on-device.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "08-treetop-tree-house.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "09-rope-bridge.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "10-cathode-ray-tube.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "11-monkey-in-the-middle.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "12-hill-climbing-algorithm.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "13-distress-signal.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "14-regolith-reservoir.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "15-beacon-exclusion-zone.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "16-proboscidea-volcanium.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-                {
-                    "root_module": "hello.rs",
-                    "edition": "2018",
-                    "deps": [],
-                },
-            ]
+          "root_module": "06-tuning-trouble.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "07-no-space-left-on-device.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "01-calorie-counting.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "02-rock-paper-scissors.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "03-rucksack-reorganization.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "04-camp-cleanup.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "05-supply-stacks.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "06-tuning-trouble.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "07-no-space-left-on-device.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "08-treetop-tree-house.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "09-rope-bridge.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "10-cathode-ray-tube.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "11-monkey-in-the-middle.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "12-hill-climbing-algorithm.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "13-distress-signal.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "14-regolith-reservoir.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "15-beacon-exclusion-zone.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "16-proboscidea-volcanium.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "hello.rs",
+          "edition": "2018",
+          "deps": []
+        },
+        {
+          "root_module": "30-huba.rs",
+          "edition": "2018",
+          "deps": []
         }
-    ]
+      ]
+    }
+  ]
 }

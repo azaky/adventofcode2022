@@ -1,0 +1,55 @@
+#!/bin/bash
+
+set -e
+
+usage() {
+  echo "usage:
+./run 01                            run with real input
+./run 01 sample                     sample input
+./run 01 sample-2                   file 01-xxx.sample-2.txt
+
+./run scaffold 01-problem-name      generate file 01-problem-name.rs from template.rs
+                                    along with .input.txt and .sample.txt files
+
+./run -h                            show this help text
+./run --help"
+  exit 1
+}
+
+if [ -z $1 ] | [ $1 == "-h" ] | [ $1 == "--help" ]; then
+  usage
+fi
+
+if [ $1 == "scaffold" ]; then
+  if [ -z $2 ]; then
+    usage
+  fi
+  cp template.rs "$2.rs"
+  touch "$2.input.txt" "$2.sample.txt"
+  jq ".[\"rust-analyzer.linkedProjects\"][0][\"crates\"] += [{\"root_module\":\"$2.rs\",\"edition\":\"2018\",\"deps\":[]}]" .vscode/settings.json > /tmp/vscode_settings.json
+  cp /tmp/vscode_settings.json .vscode/settings.json
+  exit 0
+fi
+
+base=""
+
+for f in "$1*.rs"; do
+  base="$(basename $f .rs)"
+
+  if [ -z $2 ]; then
+    echo "running $base ..."
+    input="$base.input.txt"
+  else
+    echo "running $base with input $base.$2.txt ..."
+    input="$base.$2.txt"
+  fi
+
+  rust-script $f < $input
+
+  break
+done
+
+if [ -z $base ]; then
+  echo "file $1-*.rs not found!"
+  exit 1
+fi
