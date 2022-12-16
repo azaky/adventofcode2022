@@ -4,14 +4,14 @@ I took advantage of this year's [Advent of Code](https://adventofcode.com/2022) 
 
 ## Running
 
-I'm using [`cargo-script`](https://github.com/DanielKeep/cargo-script) to run single Rust file quickly.
+I'm using [`rust-script`](https://rust-script.org/) to run single Rust file quickly.
 
 ```bash
-cargo install cargo-script
+cargo install rust-script
 ```
 
 To run something:
 
 ```bash
-cargo script 01-calorie-counting.rs
+rust-script 01-calorie-counting.rs
 ```
