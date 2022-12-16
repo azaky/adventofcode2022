@@ -1,6 +1,5 @@
-use std::borrow::Borrow;
 use std::collections::{HashMap, HashSet};
-use std::io::{BufRead, BufReader, stdin};
+use std::io::{stdin, BufRead, BufReader};
 use std::iter::zip;
 use std::vec::Vec;
 
@@ -134,14 +133,18 @@ fn main() {
         .map(|line| {
             let tokens = line.split(' ').collect::<Vec<_>>();
             let name = tokens[1];
-            let flow = tokens[4].as_bytes();
-            let flow = std::str::from_utf8(flow[5..flow.len() - 1].borrow())
+            let flow = tokens[4]
+                .split('=')
+                .nth(1)
+                .unwrap()
+                .split(';')
+                .next()
                 .unwrap()
                 .parse::<i32>()
                 .unwrap();
             let tunnels = tokens[9..]
                 .iter()
-                .map(|x| std::str::from_utf8(x.as_bytes()[..2].borrow()).unwrap())
+                .map(|x| x.split(',').next().unwrap())
                 .collect::<Vec<_>>();
             (name, flow, tunnels)
         })
