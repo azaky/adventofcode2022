@@ -89,6 +89,11 @@
                     "deps": [],
                 },
                 {
+                    "root_module": "16-proboscidea-volcanium.rs",
+                    "edition": "2018",
+                    "deps": [],
+                },
+                {
                     "root_module": "hello.rs",
                     "edition": "2018",
                     "deps": [],
