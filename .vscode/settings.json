@@ -102,6 +102,11 @@
           "root_module": "30-huba.rs",
           "edition": "2018",
           "deps": []
+        },
+        {
+          "root_module": "17-pyroclastic-flow.rs",
+          "edition": "2018",
+          "deps": []
         }
       ]
     }
