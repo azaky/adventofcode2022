@@ -112,6 +112,11 @@
           "root_module": "18-boiling-boulders.rs",
           "edition": "2018",
           "deps": []
+        },
+        {
+          "root_module": "19-not-enough-minerals.rs",
+          "edition": "2018",
+          "deps": []
         }
       ]
     }
