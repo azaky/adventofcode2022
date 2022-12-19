@@ -83,8 +83,13 @@ impl Elements {
         self.ore >= 0 && self.clay >= 0 && self.obsidian >= 0 && self.geode >= 0
     }
 
-    fn to_tuple(&self) -> (i32, i32, i32, i32) {
-        (self.ore, self.clay, self.obsidian, self.geode)
+    fn to_tuple(&self) -> (i8, i8, i8, i8) {
+        (
+            self.ore as i8,
+            self.clay as i8,
+            self.obsidian as i8,
+            self.geode as i8,
+        )
     }
 }
 
@@ -102,7 +107,7 @@ struct Blueprint {
     obsidian: Elements,
     geode: Elements,
     search_space: i64,
-    visited: HashMap<(i32, (i32, i32, i32, i32), (i32, i32, i32, i32)), i32>,
+    visited: HashMap<(i32, (i8, i8, i8, i8), (i8, i8, i8, i8)), i32>,
 }
 
 impl Blueprint {
@@ -161,26 +166,12 @@ impl Blueprint {
         pending_robots: &Elements,
         limits: &Elements,
     ) -> i32 {
-        // if minute_phase == MinutePhase::CollectResources { resources, robots, pending_robots);
-        //     println!("\tvisited.len() = {}", visited.len());
-        // }
         assert!(t <= target_t);
-        if !resources.valid() {
-            panic!()
-        }
+        assert!(resources.valid());
 
         match phase {
             Phase::CollectResources => {
-                let new_resources = resources.add(robots);
-                let new_robots = robots.add(pending_robots);
-
-                // // geode resources are calculated in advance.
-                // let geode = pending_robots.geode * (target_t - t);
-
                 if t == target_t {
-                    // if new_resources.geode == 2 { new_resources, new_robots);
-                    //     println!("\tvisited.len() = {}", visited.len());
-                    // }
                     self.search_space += 1;
                     if self.search_space % 100000 == 0 {
                         println!(
@@ -189,17 +180,16 @@ impl Blueprint {
                             self.search_space,
                             self.visited.len()
                         );
-                        println!(
-                            "\tresources = {:?}\n\trobots = {:?}",
-                            new_resources, new_robots
-                        );
                     }
-                    new_resources.geode
+                    resources.geode + robots.geode
                 } else {
                     // Clamp, except geode.
-                    let mut current_limits = limits.mul(target_t - t);
-                    current_limits.geode = i32::MAX;
-                    let new_resources = new_resources.min(&current_limits);
+                    let current_limits =
+                        limits
+                            .mul(target_t - t)
+                            .max(&Elements::new(0, 0, 0, i32::MAX));
+                    let new_resources = resources.add(robots).min(&current_limits);
+                    let new_robots = robots.add(pending_robots);
 
                     let key = (t, new_resources.to_tuple(), new_robots.to_tuple());
                     let existing = self.visited.get(&key);
@@ -217,6 +207,15 @@ impl Blueprint {
 
                             self.visited.insert(key, best);
 
+                            if self.visited.len() % 1000000 == 0 {
+                                println!(
+                                    "Blueprint({})::dfs()\n\tsearch space = {}\n\tvisited.len() = {}",
+                                    self.index,
+                                    self.search_space,
+                                    self.visited.len()
+                                );
+                            }
+
                             best
                         }
                         Some(&value) => value,
@@ -224,45 +223,6 @@ impl Blueprint {
                 }
             }
             Phase::BuildRobot => {
-                let build_ore = if resources.ge(&self.ore) {
-                    self.dfs(
-                        t,
-                        target_t,
-                        Phase::CollectResources,
-                        &resources.sub(&self.ore),
-                        robots,
-                        &Elements::new(1, 0, 0, 0),
-                        limits,
-                    )
-                } else {
-                    -1
-                };
-                let build_clay = if resources.ge(&self.clay) {
-                    self.dfs(
-                        t,
-                        target_t,
-                        Phase::CollectResources,
-                        &resources.sub(&self.clay),
-                        robots,
-                        &Elements::new(0, 1, 0, 0),
-                        limits,
-                    )
-                } else {
-                    -1
-                };
-                let build_obsidian = if resources.ge(&self.obsidian) {
-                    self.dfs(
-                        t,
-                        target_t,
-                        Phase::CollectResources,
-                        &resources.sub(&self.obsidian),
-                        robots,
-                        &Elements::new(0, 0, 1, 0),
-                        limits,
-                    )
-                } else {
-                    -1
-                };
                 let build_geode = if resources.ge(&self.geode) {
                     self.dfs(
                         t,
@@ -276,6 +236,51 @@ impl Blueprint {
                 } else {
                     -1
                 };
+                let build_obsidian = if build_geode == -1
+                    && resources.ge(&self.obsidian)
+                    && robots.obsidian < limits.obsidian
+                {
+                    self.dfs(
+                        t,
+                        target_t,
+                        Phase::CollectResources,
+                        &resources.sub(&self.obsidian),
+                        robots,
+                        &Elements::new(0, 0, 1, 0),
+                        limits,
+                    )
+                } else {
+                    -1
+                };
+
+                let build_ore =
+                    if build_geode == -1 && resources.ge(&self.ore) && robots.ore < limits.ore {
+                        self.dfs(
+                            t,
+                            target_t,
+                            Phase::CollectResources,
+                            &resources.sub(&self.ore),
+                            robots,
+                            &Elements::new(1, 0, 0, 0),
+                            limits,
+                        )
+                    } else {
+                        -1
+                    };
+                let build_clay =
+                    if build_geode == -1 && resources.ge(&self.clay) && robots.clay < limits.clay {
+                        self.dfs(
+                            t,
+                            target_t,
+                            Phase::CollectResources,
+                            &resources.sub(&self.clay),
+                            robots,
+                            &Elements::new(0, 1, 0, 0),
+                            limits,
+                        )
+                    } else {
+                        -1
+                    };
 
                 let build_nothing = if build_ore == -1
                     || build_clay == -1
