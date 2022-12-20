@@ -117,6 +117,11 @@
           "root_module": "19-not-enough-minerals.rs",
           "edition": "2018",
           "deps": []
+        },
+        {
+          "root_module": "20-grove-positioning-system.rs",
+          "edition": "2018",
+          "deps": []
         }
       ]
     }
