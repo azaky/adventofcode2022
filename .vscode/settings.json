@@ -122,6 +122,11 @@
           "root_module": "20-grove-positioning-system.rs",
           "edition": "2018",
           "deps": []
+        },
+        {
+          "root_module": "21-monkey-math.rs",
+          "edition": "2018",
+          "deps": []
         }
       ]
     }
