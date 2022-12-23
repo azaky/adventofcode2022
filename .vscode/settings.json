@@ -132,6 +132,11 @@
           "root_module": "22-monkey-map.rs",
           "edition": "2018",
           "deps": []
+        },
+        {
+          "root_module": "23-unstable-diffusion.rs",
+          "edition": "2018",
+          "deps": []
         }
       ]
     }
