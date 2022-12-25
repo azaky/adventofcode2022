@@ -142,6 +142,11 @@
           "root_module": "24-blizzard-basin.rs",
           "edition": "2018",
           "deps": []
+        },
+        {
+          "root_module": "25-full-of-hot-air.rs",
+          "edition": "2018",
+          "deps": []
         }
       ]
     }
